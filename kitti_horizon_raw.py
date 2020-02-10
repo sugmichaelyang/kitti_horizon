@@ -12,14 +12,6 @@ class KITTIHorizonRaw:
         self.target_height = target_height
         self.scale = img_scale
 
-        self.dates = [
-            '2011_09_26',
-            '2011_09_28',
-            '2011_09_29',
-            '2011_09_30',
-            '2011_10_03'
-        ]
-
     def get_date_ids(self):
         dates = []
         for entry in os.listdir(self.basedir):
