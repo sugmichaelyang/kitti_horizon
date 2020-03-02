@@ -50,7 +50,7 @@ class KITTIHorizonRaw:
 
         padded_image = np.pad(np.array(image[0]), ((pad_h1, pad_h2), (pad_w1, pad_w2), (0, 0)), 'edge')
         if self.scale < 1.:
-            padded_image = transform.rescale(padded_image, (self.scale, self.scale, 1))
+            padded_image = transform.rescale(padded_image, (self.scale, self.scale, 1), preserve_range=True)
 
         R_imu = np.matrix(drive.oxts[idx].T_w_imu[0:3, 0:3])
         G_imu = R_imu.T * G
@@ -108,6 +108,7 @@ if __name__ == "__main__":
         print("available dates:")
         for date in all_dates:
             print(date)
+        print("specify via the --date option")
         exit(0)
 
     if args.drive is None:
@@ -115,6 +116,7 @@ if __name__ == "__main__":
         print("available drives:")
         for drive in all_drives:
             print(drive)
+        print("specify via the --drive option")
         exit(0)
 
     drive = dataset.get_drive(args.date, args.drive)
