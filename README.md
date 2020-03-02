@@ -1,11 +1,11 @@
 
 If you use this code, please cite [our paper](https://arxiv.org/abs/1907.10014):
 ```
-@article{kluger2019temporally,
+@inproceedings{kluger2020temporally,
   title={Temporally Consistent Horizon Lines},
   author={Kluger, Florian and Ackermann, Hanno and Yang, Michael Ying and Rosenhahn, Bodo},
-  journal={arXiv preprint arXiv:1907.10014},
-  year={2019}
+  booktitle={2020 International Conference on Robotics and Automation (ICRA)},
+  year={2020}
 }
 ```
 
@@ -17,8 +17,8 @@ cd kitti_horizon
 ```
 
 Install required libraries, e.g. via pip or conda:
-* pykitti, numpy, scikit-image
-* *optional:* pytorch, Pillow, opencv
+* pykitti, numpy, scikit-image, opencv
+* *optional:* pytorch, Pillow
 
 Download the [KITTI *raw* dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php).
 
