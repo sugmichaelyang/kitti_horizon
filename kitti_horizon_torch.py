@@ -10,7 +10,7 @@ class KITTIHorizon(Dataset):
 
     def __init__(self, csv_file, root_dir, seq_length, augmentation=True, return_info=False,
                  fill_up=True, transform=None, single_sequence=None,
-                 max_shift=10., max_rotation=2.):
+                 max_shift=10., max_rotation=2., padding=0):
 
         self.seq_length = seq_length
         self.transform = transform
@@ -47,7 +47,7 @@ class KITTIHorizon(Dataset):
                     else:
 
                         start_range = (range(0, 0+total_length-self.seq_length+1, self.seq_length))
-                        stop_range = (range(self.seq_length, 0+total_length+1, self.seq_length))
+                        stop_range = (range(self.seq_length+padding, 0+total_length+1, self.seq_length))
 
                         for frames in zip(start_range, stop_range):
                             self.sequences.append((date, drive, frames, start_frame))
@@ -65,6 +65,7 @@ class KITTIHorizon(Dataset):
         self.fill_up = fill_up
         self.im_width = None
         self.im_height = None
+        self.padding = padding
 
     def __len__(self):
         return len(self.sequences)
@@ -80,7 +81,7 @@ class KITTIHorizon(Dataset):
         dataset = [((self.root_dir + "/" + date + "/" + drive + "/%06d.pkl" % (idx+start_frame)), idx) for idx in frame_list]
 
         if self.fill_up:
-            seq_length = self.seq_length
+            seq_length = self.seq_length + self.padding
         else:
             seq_length = len(dataset)
 
